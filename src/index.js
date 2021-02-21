@@ -56,40 +56,40 @@ class Interaction {
         // Handle for line
         data = this.handleLineData(command);
         if(data) {
-            if (this.canvas.isInBound(data.x1, data.y1) && this.canvas.isInBound(data.x2, data.y2)) {
-                const status = this.canvas.addLine(data.x1, data.y1, data.x2, data.y2);
-                if (!status) {
-                    console.log(this.#VALIDATIONMSGS.INVALIDPARAMS);
-                }
-                this.canvas.draw();
-            } else {
+            if (!this.canvas.isInBound(data.x1, data.y1) || !this.canvas.isInBound(data.x2, data.y2)) {
                 console.log(this.#VALIDATIONMSGS.NOTINBOUND);
+                return;
             }
+            if (!this.canvas.addLine(data.x1, data.y1, data.x2, data.y2)) {
+                console.log(this.#VALIDATIONMSGS.INVALIDPARAMS);
+                return;
+            }
+            this.canvas.draw();
             return;
         }
         // Handle for Rectangle
         data = this.handleRectangleData(command);
         if (data) {
-            if (this.canvas.isInBound(data.x1, data.y1) && this.canvas.isInBound(data.x2, data.y2)) {
-                const status = this.canvas.addRectangle(data.x1, data.y1, data.x2, data.y2);
-                if (!status) {
-                    console.log(this.#VALIDATIONMSGS.INVALIDPARAMS);
-                }
-                this.canvas.draw();
-            } else {
+            if (!this.canvas.isInBound(data.x1, data.y1) || !this.canvas.isInBound(data.x2, data.y2)) {
                 console.log(this.#VALIDATIONMSGS.NOTINBOUND);
+                return;
             }
+            if (!this.canvas.addRectangle(data.x1, data.y1, data.x2, data.y2)) {
+                console.log(this.#VALIDATIONMSGS.INVALIDPARAMS);
+                return;
+            }
+            this.canvas.draw();
             return;
         }
         // Handle for bucket fill
         data = this.handleBucket(command);
         if (data) {
-            if (this.canvas.isInBound(data.x, data.y)) {
-                this.canvas.fill(data.x, data.y, data.c);
-                this.canvas.draw();
-            } else {
+            if (!this.canvas.isInBound(data.x, data.y)) {
                 console.log(this.#VALIDATIONMSGS.NOTINBOUND);
+                return;
             }
+            this.canvas.fill(data.x, data.y, data.c);
+            this.canvas.draw();
             return;
         }
 
