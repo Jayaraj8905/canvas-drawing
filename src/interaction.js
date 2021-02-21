@@ -11,7 +11,7 @@ export class Interaction {
     }
 
     #VALIDATIONMSGS = {
-        CANVASDIMENSIONS: 'Canvas width and height should not be 0',
+        CANVASDIMENSIONS: 'Canvas width and height should not be 0!',
         INVALIDCOMMAND: 'Invalid Command!',
         NOTINBOUND: 'Coordinates are not inbound!',
         NOCANVAS: 'No Canvas found. Create canvas first!',
